@@ -6,6 +6,9 @@
 			div {
 				#display:table-cell;
 			}
+			div.container {
+				display:table-cell;
+			}
 			div.block {
 				position:relative;
 				left:40px;
@@ -22,23 +25,27 @@
 		</style>
 	</head>
 	<body>
-		<div class="method">
-		std::string GetStatement()
-		<br/>
-		{
-			<div class="block">
-				<div class="statement">Money amount = <div class="expression">0</div>;</div>
-				<div class="statement">
-					for( Rental::iterator i = rentals.begin(); i != rentals.end(); ++i)
-					<br/>
-					{
-					<div class="block">
-						<div class="statement">amount += <div class="expression">i->GetAmount()</div>;</div>
+		<div class="container">
+			<div class="method">
+			std::string GetStatement()
+			<br/>
+			{
+				<div class="container">
+				<div class="block">
+					<div class="statement">Money amount = <div class="expression">0</div>;</div>
+					<div class="statement">
+						for( Rental::iterator i = rentals.begin(); i != rentals.end(); ++i)
+						<br/>
+						{
+						<div class="container"><div class="block">
+							<div class="statement">amount += <div class="expression">i->GetAmount()</div>;</div>
+						</div></div>
+						}
 					</div>
-					}
 				</div>
+				</div>
+			}
 			</div>
-		}
 		</div>
 	</body>
 </html>
