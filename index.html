@@ -1,0 +1,44 @@
+<html>
+	<head>
+		<title>Refactoring Simulator</title>
+		<style type="text/css">
+			# find a way to make the widths of the divs equal to the width of their contents
+			div {
+				#display:table-cell;
+			}
+			div.block {
+				position:relative;
+				left:40px;
+			}
+			div.expression {
+				display:inline-block;
+				background-color:#ffeeff;
+			}
+			div.statement {
+				border:dotted;
+				border-width:1px;
+				border-color:#ffaaff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="method">
+		std::string GetStatement()
+		<br/>
+		{
+			<div class="block">
+				<div class="statement">Money amount = <div class="expression">0</div>;</div>
+				<div class="statement">
+					for( Rental::iterator i = rentals.begin(); i != rentals.end(); ++i)
+					<br/>
+					{
+					<div class="block">
+						<div class="statement">amount += <div class="expression">i->GetAmount()</div>;</div>
+					</div>
+					}
+				</div>
+			</div>
+		}
+		</div>
+	</body>
+</html>
