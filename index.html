@@ -2,27 +2,47 @@
 	<head>
 		<title>Refactoring Simulator</title>
 		<style type="text/css">
-			# find a way to make the widths of the divs equal to the width of their contents
 			div {
 				#display:table-cell;
+                background-color:#ffffff;
 			}
 			div.container {
-				display:table-cell;
+				display:inline
 			}
 			div.block {
 				position:relative;
 				left:40px;
+                display:table-cell;
 			}
 			div.expression {
 				display:inline-block;
-				background-color:#ffeeff;
 			}
 			div.statement {
-				border:dotted;
-				border-width:1px;
-				border-color:#ffaaff;
 			}
+            div.selected {
+				background-color:#ffaaff;
+            }
 		</style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
+                    $('.statement, .expression').mouseenter(function() {
+                        $(this).closest('.selected').each(function(i) {
+                            $(i).removeClass('selected');
+                        });
+                        $('div', this).addClass('selected');
+                        $(this).addClass('selected');
+                    }).mouseleave(function() {
+                        var selectedAbove = $(this).closest('.selected').toArray();
+                        console.log($.map(selectedAbove, function(e, i){return e.id}));
+                        if( $($.grep(selectedAbove, function(e,i){ return i.id != this.id})).size() == 0 ) {
+                            $(this).find('div').removeClass('selected');
+                            $(this).removeClass('selected');
+                        } else {
+                        }
+                    });
+            });
+        </script>
 	</head>
 	<body>
 		<div class="container">
@@ -32,16 +52,18 @@
 			{
 				<div class="container">
 				<div class="block">
-					<div class="statement">Money amount = <div class="expression">0</div>;</div>
-					<div class="statement">
-						for( Rental::iterator i = rentals.begin(); i != rentals.end(); ++i)
+                    <div class="container"><div class="statement" id="qwer">Money amount = <div class="expression">0</div>;</div></div>
+                    <div class="container"><div class="statement" id="asdf">
+                        for( Rental::iterator i = <div class="expression">rentals.begin()</div>; i != <div class="expression">rentals.end()</div>; ++i)
 						<br/>
 						{
-						<div class="container"><div class="block">
-							<div class="statement">amount += <div class="expression">i->GetAmount()</div>;</div>
-						</div></div>
+                        <br/>
+						<div class="block">
+                            <div class="container"><div class="statement" id="lkj">amount += <div class="expression"><div class="expression">5</div> + <div class="expression">i->GetAmount()</div></div>;</div></div>
+                            <div class="container"><div class="statement" id="lkj2">amount += <div class="expression">5</div>;</div></div>
+						</div>
 						}
-					</div>
+                </div></div>
 				</div>
 				</div>
 			}
