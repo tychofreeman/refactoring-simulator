@@ -4,7 +4,7 @@
 		<style type="text/css">
 			div {
 				#display:table-cell;
-                background-color:#ffffff;
+                background-color:transparent;
 			}
 			div.container {
 				display:inline
@@ -25,42 +25,39 @@
 		</style>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
         <script type="text/javascript">
+            // What I really need to do is append the div id to a list on mouseenter(), and only select the last item in that list. And unselect/reselect on mouseleave().
             $(document).ready(function() {
                     $('.statement, .expression').mouseenter(function() {
-                        $(this).closest('.selected').each(function(i) {
-                            $(i).removeClass('selected');
+                        $(this).parents().filter('.selected').each(function(i,e) {
+                            console.log("Removing selected class on " + e.id)
+                            $(e).removeClass('selected');
+                            $(e).find('.selected').removeClass('selected');
                         });
-                        $('div', this).addClass('selected');
+                        //$('.statement, .expression', this).addClass('selected');
                         $(this).addClass('selected');
                     }).mouseleave(function() {
-                        var selectedAbove = $(this).closest('.selected').toArray();
-                        console.log($.map(selectedAbove, function(e, i){return e.id}));
-                        if( $($.grep(selectedAbove, function(e,i){ return i.id != this.id})).size() == 0 ) {
-                            $(this).find('div').removeClass('selected');
-                            $(this).removeClass('selected');
-                        } else {
-                        }
+                        $(this).removeClass('selected');
                     });
             });
         </script>
 	</head>
-	<body>
-		<div class="container">
-			<div class="method">
+	<body id="realBody">
+		<div class="container" id="body">
+            <div class="method" id="method">
 			std::string GetStatement()
 			<br/>
 			{
-				<div class="container">
-				<div class="block">
-                    <div class="container"><div class="statement" id="qwer">Money amount = <div class="expression">0</div>;</div></div>
-                    <div class="container"><div class="statement" id="asdf">
-                        for( Rental::iterator i = <div class="expression">rentals.begin()</div>; i != <div class="expression">rentals.end()</div>; ++i)
+				<div class="container" id="block_container">
+				<div class="block" id="block">
+                    <div class="container" id="qwer_container"><div class="statement" id="qwer">Money amount = <div class="expression" id="zero">0</div>;</div></div>
+                    <div class="container" id="asdf_container"><div class="statement" id="asdf">
+                        for( Rental::iterator i = <div class="expression" id="begin">rentals.begin()</div>; i != <div class="expression" id="end">rentals.end()</div>; ++i)
 						<br/>
 						{
                         <br/>
-						<div class="block">
-                            <div class="container"><div class="statement" id="lkj">amount += <div class="expression"><div class="expression">5</div> + <div class="expression">i->GetAmount()</div></div>;</div></div>
-                            <div class="container"><div class="statement" id="lkj2">amount += <div class="expression">5</div>;</div></div>
+						<div class="block" id="lkjh">
+                            <div class="container"><div class="statement" id="lkj">amount += <div class="expression" id="plus"><div class="expression" id="five">5</div> + <div class="expression" id="getamount">i->GetAmount()</div></div>;</div></div>
+                            <div class="container"><div class="statement" id="lkj2">amount += <div class="expression" id="second-five">5</div>;</div></div>
 						</div>
 						}
                 </div></div>
